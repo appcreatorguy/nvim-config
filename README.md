@@ -16,8 +16,8 @@
     <a href="https://github.com/jdhao/nvim-config">
     <img src="https://img.shields.io/github/repo-size/jdhao/nvim-config?style=flat-square&label=Repo" alt="Repo size">
     </a>
-    <a href="https://github.com/neovim/neovim/releases/tag/v0.6.0">
-     <img src="https://img.shields.io/badge/Neovim-0.6.0-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" alt="Neovim minimum version"/>
+    <a href="https://github.com/neovim/neovim/releases/tag/v0.6.1">
+     <img src="https://img.shields.io/badge/Neovim-0.6.1-blueviolet.svg?style=flat-square&logo=Neovim&logoColor=green" alt="Neovim minimum version"/>
     </a>
     <img src="https://img.shields.io/github/languages/top/jdhao/nvim-config" />
     <a href="https://github.com/jdhao/nvim-config/blob/master/LICENSE">
@@ -42,8 +42,8 @@ add it to your own Nvim config.
 See [doc here](docs/README.md) on how to install Nvim's dependencies, Nvim
 itself, and how to set up on different platforms (Linux, macOS and Windows).
 
-**This config is tested against [Nvim v0.6.0 release](https://github.com/neovim/neovim/releases/tag/v0.6.0). No backward compatibility is
-guaranteed.**
+**This config is tested against [Nvim v0.6.1 release](https://github.com/neovim/neovim/releases/tag/v0.6.0).
+No backward compatibility is guaranteed.**
 
 # Features #
 
@@ -193,12 +193,13 @@ If you still have an issue, [open a new issue](https://github.com/jdhao/nvim-con
 
 # Further readings
 
-Some of the resources that I find helpful in mastering Vim is documented [here](docs/nvim_resources.md).
-You may also be interested in my post in configuring Vim on different platforms:
+Some of the resources that I find helpful in mastering Nvim is documented [here](docs/nvim_resources.md).
+You may also be interested in my posts on configuring Nvim:
 
++ My nvim notes can be found [here](https://jdhao.github.io/categories/Nvim/)
 + [Config nvim on Linux for Python development](https://jdhao.github.io/2018/12/24/centos_nvim_install_use_guide_en/)
 + [Nvim config on Windows 10](https://jdhao.github.io/2018/11/15/neovim_configuration_windows/)
 + [Nvim-qt config on Windows 10](https://jdhao.github.io/2019/01/17/nvim_qt_settings_on_windows/)
-+ My nvim notes can be found [here](https://jdhao.github.io/categories/Nvim/)
++ [Using Neovim for Three years](https://jdhao.github.io/2021/12/31/using_nvim_after_three_years/)
 
 <b id="f1">1:</b> Not enabled by default for Linux, see [this issue](https://github.com/jdhao/nvim-config/issues/4) on how to enable vimtex on Linux. [↩](#a1)
