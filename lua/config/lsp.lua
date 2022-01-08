@@ -97,6 +97,8 @@ lspconfig.pylsp.setup({
 --   capabilities = capabilities
 -- }
 
+lspconfig.jdtls.setup{ cmd = { 'jdtls' } }
+
 lspconfig.clangd.setup({
   on_attach = custom_attach,
   capabilities = capabilities,
