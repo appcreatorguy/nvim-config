@@ -5,7 +5,7 @@
 " only the settings and options that suits you. I would not recommend cloning
 " this repo and replace your own config. Good configurations are personal,
 " built over time with a lot of polish.
-" Author: Jie-dong Hao
+" Author: Jie-dong Hao + Manas Mengle
 " Email: jdhao@hotmail.com
 
 let g:config_files = [

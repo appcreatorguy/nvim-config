@@ -11,6 +11,9 @@ else
   plug_url_format = "https://github.com/%s"
 end
 
+-- Fastgit down, using github
+plug_url_format = "https://github.com/%s"
+
 local packer_repo = string.format(plug_url_format, "wbthomason/packer.nvim")
 local install_cmd = string.format("10split |term git clone --depth=1 %s %s", packer_repo, packer_install_dir)
 
@@ -354,6 +357,14 @@ require("packer").startup({
 
     -- show and trim trailing whitespaces
     use {'jdhao/whitespace.nvim', event = 'VimEnter'}
+
+    -- file browser
+    use {"kyazdani42/nvim-tree.lua",
+    requires = {'kyazdani42/nvim-web-devicons',}, --optional, for file icon
+    config = function()
+     vim.defer_fn(function() require('config.nvim-tree') end, 2000)
+    end
+    }
   end,
   config = {
     max_jobs = 16,
