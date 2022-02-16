@@ -108,6 +108,13 @@ lspconfig.clangd.setup({
   },
 })
 
+lspconfig.gdscript.setup{
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  }
+}
+
 -- set up vim-language-server
 lspconfig.vimls.setup({
   on_attach = custom_attach,

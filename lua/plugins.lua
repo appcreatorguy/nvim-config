@@ -365,6 +365,10 @@ require("packer").startup({
      vim.defer_fn(function() require('config.nvim-tree') end, 2000)
     end
     }
+
+    -- godot support
+    use {'habamax/vim-godot', event = 'VimEnter'}
+
   end,
   config = {
     max_jobs = 16,

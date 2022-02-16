@@ -126,6 +126,7 @@ let g:vista_echo_cursor = 0
 let g:vista_stay_on_open = 0
 
 nnoremap <silent> <Space>t :<C-U>Vista!!<CR>
+nnoremap <silent> <leader>t :<C-U>Vista!!<CR>
 
 """"""""""""""""""""""""vim-mundo settings"""""""""""""""""""""""
 let g:mundo_verbose_graph = 0
