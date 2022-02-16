@@ -85,7 +85,7 @@ function! s:custom_highlight() abort
   highlight FloatBorder guifg=LightGreen guibg=NONE
 
   " highlight for matching parentheses
-  highlight MatchParen cterm=bold,reverse,underline gui=bold,reverse,underline
+  highlight MatchParen cterm=bold,underline gui=bold,underline
 endfunction
 
 " highlight yanked region, see `:h lua-highlight`
@@ -117,4 +117,9 @@ augroup END
 augroup packer_auto_compile
   autocmd!
   autocmd BufWritePost */nvim/lua/plugins.lua source <afile> | PackerCompile
+augroup END
+
+augroup auto_create_dir
+  autocmd!
+  autocmd BufWritePre * lua require('utils').may_create_dir()
 augroup END
