@@ -14,7 +14,7 @@ end
 -- Fastgit down, using github
 plug_url_format = "https://github.com/%s"
 
-local packer_repo = string.format(plug_url_format, "wbthomason/packer.nvim")
+local packer_repo = "https://github.com/wbthomason/packer.nvim"
 local install_cmd = string.format("10split |term git clone --depth=1 %s %s", packer_repo, packer_install_dir)
 
 -- Auto-install packer in case it hasn't been installed.
@@ -34,7 +34,7 @@ require("packer").startup({
 
     use({"wbthomason/packer.nvim", opt = true})
 
-    use {"onsails/lspkind-nvim", event = "BufEnter"}
+    use({"onsails/lspkind-nvim", event = "VimEnter"})
     -- auto-completion engine
     use {"hrsh7th/nvim-cmp", after = "lspkind-nvim", config = [[require('config.nvim-cmp')]]}
 
@@ -358,12 +358,11 @@ require("packer").startup({
     -- show and trim trailing whitespaces
     use {'jdhao/whitespace.nvim', event = 'VimEnter'}
 
-    -- file browser
-    use {"kyazdani42/nvim-tree.lua",
-    requires = {'kyazdani42/nvim-web-devicons',}, --optional, for file icon
-    config = function()
-     vim.defer_fn(function() require('config.nvim-tree') end, 2000)
-    end
+    -- file explorer
+    use {
+      'kyazdani42/nvim-tree.lua',
+      requires = { 'kyazdani42/nvim-web-devicons' },
+      config = [[require('config.nvim-tree')]]
     }
 
     -- godot support
@@ -373,9 +372,6 @@ require("packer").startup({
   config = {
     max_jobs = 16,
     compile_path = util.join_paths(vim.fn.stdpath('config'), 'lua', 'packer_compiled.lua'),
-    git = {
-      default_url_format = plug_url_format,
-    },
   },
 })
 
