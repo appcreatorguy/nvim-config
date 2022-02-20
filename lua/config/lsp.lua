@@ -1,6 +1,8 @@
 local api = vim.api
 local lsp = vim.lsp
 
+local utils = require("utils")
+
 local M = {}
 
 function M.show_line_diagnostics()
@@ -67,55 +69,87 @@ local custom_attach = function(client, bufnr)
   end
 end
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(lsp.protocol.make_client_capabilities())
+local capabilities = lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lspconfig = require("lspconfig")
 
-lspconfig.pylsp.setup({
-  on_attach = custom_attach,
-  settings = {
-    pylsp = {
-      plugins = {
-        pylint = { enabled = true, executable = "pylint" },
-        pyflakes = { enabled = false },
-        pycodestyle = { enabled = false },
-        jedi_completion = { fuzzy = true },
-        pyls_isort = { enabled = true },
-        pylsp_mypy = { enabled = true },
+if utils.executable('pylsp') then
+  lspconfig.pylsp.setup({
+    on_attach = custom_attach,
+    settings = {
+      pylsp = {
+        plugins = {
+          pylint = { enabled = true, executable = "pylint" },
+          pyflakes = { enabled = false },
+          pycodestyle = { enabled = false },
+          jedi_completion = { fuzzy = true },
+          pyls_isort = { enabled = true },
+          pylsp_mypy = { enabled = true },
+        },
       },
     },
-  },
-  flags = {
-    debounce_text_changes = 200,
-  },
-  capabilities = capabilities,
-})
+    flags = {
+      debounce_text_changes = 200,
+    },
+    capabilities = capabilities,
+  })
+else
+  vim.notify("pylsp not found!", 'warn', {title = 'Nvim-config'})
+end
 
--- lspconfig.pyright.setup{
---   on_attach = custom_attach,
---   capabilities = capabilities
--- }
+-- if utils.executable('pyright') then
+--   lspconfig.pyright.setup{
+--     on_attach = custom_attach,
+--     capabilities = capabilities
+--   }
+-- else
+--   vim.notify("pyright not found!", 'warn', {title = 'Nvim-config'})
+-- end
+
+if utils.executable('clangd') then
+  lspconfig.clangd.setup({
+    on_attach = custom_attach,
+    capabilities = capabilities,
+    filetypes = { "c", "cpp", "cc" },
+    flags = {
+      debounce_text_changes = 500,
+    },
+  })
+else
+  vim.notify("clangd not found!", 'warn', {title = 'Nvim-config'})
+end
 
 lspconfig.jdtls.setup{}
 
-lspconfig.clangd.setup({
-  on_attach = custom_attach,
-  capabilities = capabilities,
-  filetypes = { "c", "cpp", "cc" },
+lspconfig.gdscript.setup{
+  on_attach = on_attach,
   flags = {
-    debounce_text_changes = 500,
-  },
-})
+    debounce_text_changes = 150,
+  }
+}
 
 -- set up vim-language-server
-lspconfig.vimls.setup({
-  on_attach = custom_attach,
-  flags = {
-    debounce_text_changes = 500,
-  },
-  capabilities = capabilities,
-})
+if utils.executable('vim-language-server') then
+  lspconfig.vimls.setup({
+    on_attach = custom_attach,
+    flags = {
+      debounce_text_changes = 500,
+    },
+    capabilities = capabilities,
+  })
+else
+  vim.notify("vim-language-server not found!", 'warn', {title = 'Nvim-config'})
+end
+
+-- set up bash-language-server
+if utils.executable('bash-language-server') then
+  lspconfig.bashls.setup({
+    on_attach = custom_attach,
+    capabilities = capabilities,
+  })
+end
 
 local sumneko_binary_path = vim.fn.exepath("lua-language-server")
 if vim.g.is_mac or vim.g.is_linux and sumneko_binary_path ~= "" then
@@ -125,7 +159,7 @@ if vim.g.is_mac or vim.g.is_linux and sumneko_binary_path ~= "" then
   table.insert(runtime_path, "lua/?.lua")
   table.insert(runtime_path, "lua/?/init.lua")
 
-  require("lspconfig").sumneko_lua.setup({
+  lspconfig.sumneko_lua.setup({
     on_attach = custom_attach,
     cmd = { sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua" },
     settings = {

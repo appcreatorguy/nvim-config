@@ -3,6 +3,9 @@ inoremap <silent> <S-Insert>  <C-R>+
 cnoremap <S-Insert> <C-R>+
 nnoremap <silent> <C-6> <C-^>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                          config for nvim-qt                          "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " To check if neovim-qt is running, use `exists('g:GuiLoaded')`,
 " see https://github.com/equalsraf/neovim-qt/issues/219
 if exists('g:GuiLoaded')
@@ -14,6 +17,9 @@ if exists('g:GuiLoaded')
   GuiWindowOpacity 0.7
 endif
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           config for fvim                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if exists('g:fvim_loaded')
   set termguicolors
   colorscheme gruvbox8_hard

@@ -12,6 +12,10 @@ call utils#Cabbrev('pud', 'PackerUpdate')
 call utils#Cabbrev('pc', 'PackerClean')
 call utils#Cabbrev('ps', 'PackerSync')
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      configurations for vim script plugin                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """""""""""""""""""""""""UltiSnips settings"""""""""""""""""""
 " Trigger configuration. Do not use <tab> if you use YouCompleteMe
 let g:UltiSnipsExpandTrigger='<c-j>'
@@ -52,7 +56,7 @@ if g:is_linux
 endif
 
 " Only fuzzy-search files names
-let g:Lf_DefaultMode = 'NameOnly'
+let g:Lf_DefaultMode = 'FullPath'
 
 " Popup window settings
 let w = float2nr(&columns * 0.8)
@@ -126,6 +130,7 @@ let g:vista_echo_cursor = 0
 let g:vista_stay_on_open = 0
 
 nnoremap <silent> <Space>t :<C-U>Vista!!<CR>
+nnoremap <silent> <leader>t :<C-U>Vista!!<CR>
 
 """"""""""""""""""""""""vim-mundo settings"""""""""""""""""""""""
 let g:mundo_verbose_graph = 0
@@ -378,11 +383,7 @@ endif
 nnoremap <leader>dp :<C-U>GdbStartPDB python -m pdb %<CR>
 
 """"""""""""""""""""""""""""""wilder.nvim settings""""""""""""""""""""""""""""""
-augroup wilder_init
-  autocmd!
-  " CursorHold is suggested here: https://github.com/gelguy/wilder.nvim/issues/89#issuecomment-934465957.
-  autocmd CursorHold * ++once call s:wilder_init()
-augroup END
+call timer_start(250, { -> s:wilder_init() })
 
 function! s:wilder_init() abort
   try
