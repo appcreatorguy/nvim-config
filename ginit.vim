@@ -11,6 +11,7 @@ if exists('g:GuiLoaded')
   GuiPopupmenu 0
   GuiLinespace 2
   GuiFont! Hack\ NF:h10:l
+  GuiWindowOpacity 0.7
 endif
 
 if exists('g:fvim_loaded')

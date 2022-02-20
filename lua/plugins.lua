@@ -365,6 +365,9 @@ require("packer").startup({
      vim.defer_fn(function() require('config.nvim-tree') end, 2000)
     end
     }
+
+    -- cmake support
+    use {"cdelledonne/vim-cmake", event = 'VimEnter'}
   end,
   config = {
     max_jobs = 16,
